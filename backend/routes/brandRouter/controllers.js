@@ -1,10 +1,10 @@
-const { Type } = require('../../models/models');
+const { Brand } = require('../../models/models');
 
 exports.create = async (req, res) => {
   try {
     const { name } = req.body;
-    const type = await Type.create({ name });
-    return res.status(200).json(type);
+    const brand = await Brand.create({ name });
+    return res.status(200).json(brand);
   } catch (e) {
     console.log(e.message);
   }
@@ -12,8 +12,8 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
   try {
-    const types = await Type.findAll();
-    return res.status(200).json(types);
+    const brand = await Brand.findAll();
+    return res.status(200).json(brand);
   } catch (e) {
     console.log(e.message);
   }

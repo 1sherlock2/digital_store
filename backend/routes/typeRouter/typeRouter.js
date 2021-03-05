@@ -1,8 +1,8 @@
 const Router = require('express');
 const router = new Router();
-const typeController = require('./controllers');
+const { create, getAll } = require('./controllers');
 
-router.get('/');
-router.post('/');
+router.get('/', getAll);
+router.post('/', create);
 
 module.exports = router;

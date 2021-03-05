@@ -7,7 +7,9 @@ const {
   registController,
 } = require('./controllers');
 
-router.get('/auth', authController, (req, res) => {});
+router.get('/auth', authController, (req, res) => {
+  res;
+});
 router.post('/login', loginController, (req, res) => {});
 router.post('/registration', registController, (req, res) => {});
 

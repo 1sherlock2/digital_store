@@ -1,17 +1,17 @@
 const errorMiddleWare = require('../../middlewares/errorMiddleWare');
 
 module.exports = {
-  authController: (req, res, next) => {
+  authController: async (req, res, next) => {
     const { id } = req.query;
     if (!id) {
       return next();
     }
-    res.json(query);
+    res.json({id});
   },
-  loginController: (req, res) => {
+  loginController: async  (req, res) => {
     console.log('auth');
   },
-  registController: (req, res) => {
+  registController: async  (req, res) => {
     console.log('reg');
   },
 };
