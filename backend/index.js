@@ -17,7 +17,7 @@ app.use(bodyParser());
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload());
 app.use('/', router);
-
+console.log(process.getuid());
 // Обработка ошибок
 app.use(errorMiddleware);
 
