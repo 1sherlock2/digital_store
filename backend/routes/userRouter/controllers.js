@@ -1,7 +1,8 @@
 const errorMiddleWare = require('../../middlewares/errorMiddleWare');
 const { User } = require('../../models/models');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
+const statusCode = require('../../utils/responseValue');
 
 exports.registr = async (req, res, next) => {
   try {
@@ -19,7 +20,6 @@ exports.registr = async (req, res, next) => {
     const user = await User.create({ email, bcryptPass, role });
     return res.status(200).json(user);
   } catch (e) {
-    // next(errorMiddleWare(e, res));
     console.log(e);
   }
 };
@@ -27,25 +27,25 @@ exports.registr = async (req, res, next) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findAll({ where: { email } });
+    const user = await User.findOne({ where: { email }, raw: true });
     if (!user) {
-      return res
-        .status(400)
-        .json({ message: 'email or password is not correct' });
+      return statusCode(res, 400, {
+        message: 'email or password is not correct',
+      });
     }
-    console.log(user.email, user.password);
+
     const secretKey = process.env.PRIVAT_KEY;
-    const token = jwt.sign(email, secretKey, {
+    const token = await jwt.sign({ email: email }, secretKey, {
       algorithm: 'HS256',
-      expiresIn: '60',
+      expiresIn: '1h',
     });
-    const correctPass = bcrypt.compare(password, user.password);
+    const correctPass = await bcrypt.compare(password, user.password);
     if (!correctPass) {
-      return res
-        .status(400)
-        .json({ message: 'email or password is not correct' });
+      return statusCode(res, 400, {
+        message: 'email or password is not correct',
+      });
     }
-    return res.status(200).json({ token, user: user.id });
+    return statusCode(res, 200, { token, user: user.id });
   } catch (e) {
     console.log(e);
   }
@@ -57,18 +57,11 @@ exports.deleteOne = async (req, res) => {
     await User.destroy({ where: { id } });
     const user = await User.findAll({ where: { id } });
     if (!user) {
-      return res.status(400).json({
+      return statusCode(res, 400, {
         message: 'User has been not delete, bacause he is not available',
       });
     }
-    return res.status(200).json({ message: 'User has been delete' });
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-exports.deleteAll = (req, res) => {
-  try {
+    return statusCode(res, 200, { message: 'User has been delete' });
   } catch (e) {
     console.log(e);
   }
