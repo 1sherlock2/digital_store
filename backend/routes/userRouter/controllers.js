@@ -1,24 +1,35 @@
 const errorMiddleWare = require('../../middlewares/errorMiddleWare');
-const { User } = require('../../models/models');
+const { User, Basket } = require('../../models/models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const statusCode = require('../../utils/responseValue');
 
-exports.registr = async (req, res, next) => {
+const secretKey = process.env.PRIVAT_KEY;
+
+const generateJwt = (email, secretKey) => {
+  jwt.sign({ email }, secretKey, {
+    algorithm: 'HS256',
+    expiresIn: '1h',
+  });
+};
+
+exports.register = async (req, res, next) => {
   try {
     const { email, password, role } = req.body;
     if (!email && !password) {
-      return res
-        .status(400)
-        .json({ message: 'Email or password is not correct' });
+      return statusCode(res, 400, {
+        message: 'Email or password is not correct',
+      });
     }
     const findUser = await User.findOne({ where: { email } });
     if (findUser) {
       return res.status(400).json({ message: 'This user was created' });
     }
-    const bcryptPass = await bcrypt.hash(password, 10);
+    const privatKey = process.env.PRIVAT_KEY;
+    const bcryptPass = bcrypt.hash(password, 10);
     const user = await User.create({ email, bcryptPass, role });
-    return res.status(200).json(user);
+    const basket = await Basket.create({ where: { userId: user.id } });
+    return statusCode(res, 200, { message: 'User has been created' });
   } catch (e) {
     console.log(e);
   }
@@ -27,28 +38,29 @@ exports.registr = async (req, res, next) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ where: { email }, raw: true });
+    const user = await User.findOne({ where: { email } });
     if (!user) {
       return statusCode(res, 400, {
         message: 'email or password is not correct',
       });
     }
-
-    const secretKey = process.env.PRIVAT_KEY;
-    const token = await jwt.sign({ email: email }, secretKey, {
-      algorithm: 'HS256',
-      expiresIn: '1h',
-    });
-    const correctPass = await bcrypt.compare(password, user.password);
+    const correctPass = bcrypt.compareSync(password, user.password);
+    console.log(correctPass);
     if (!correctPass) {
       return statusCode(res, 400, {
         message: 'email or password is not correct',
       });
     }
+    const token = generateJwt(user.email, secretKey);
     return statusCode(res, 200, { token, user: user.id });
   } catch (e) {
     console.log(e);
   }
+};
+
+exports.check = (req, res) => {
+  const token = generateJwt(req.email, secretKey);
+  return statusCode(res, 200, { token });
 };
 
 exports.deleteOne = async (req, res) => {
