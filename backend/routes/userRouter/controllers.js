@@ -4,6 +4,15 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const statusCode = require('../../utils/responseValue');
 
+const secretKey = process.env.PRIVAT_KEY;
+
+const generateJwt = (email, secretKey) => {
+  return jwt.sign({ email }, secretKey, {
+    algorithm: 'HS256',
+    expiresIn: '1h',
+  });
+};
+
 exports.register = async (req, res, next) => {
   try {
     const { email, password, role } = req.body;
@@ -40,11 +49,7 @@ exports.login = async (req, res) => {
         message: 'email or password is not correct',
       });
     }
-    const secretKey = process.env.PRIVAT_KEY;
-    const token = await jwt.sign({ email }, secretKey, {
-      algorithm: 'HS256',
-      expiresIn: '1h',
-    });
+    const token = await generateJwt(email, secretKey);
     return statusCode(res, 200, { token, user: user.id });
   } catch (e) {
     console.log(e);
@@ -52,6 +57,11 @@ exports.login = async (req, res) => {
 };
 
 exports.check = async (req, res) => {
+  const token = await generateJwt(req.email, secretKey);
+  return statusCode(res, 200, { token });
+};
+
+exports.getAll = async (req, res) => {
   const user = await User.findAll();
   return statusCode(res, 200, { user });
 };

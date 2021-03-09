@@ -1,9 +1,10 @@
 const Router = require('express');
+const authMiddleware = require('../../middlewares/authMiddleware');
 const router = new Router();
 
-const { login, register, deleteOne, check } = require('./controllers');
+const { login, register, deleteOne, getAll, check } = require('./controllers');
 
-router.get('/', check);
+router.get('/check', authMiddleware, check);
 router.post('/login', login);
 router.post('/register', register);
 router.delete('/:id', deleteOne);
