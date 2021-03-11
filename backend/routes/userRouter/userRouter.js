@@ -4,6 +4,8 @@ const router = new Router();
 
 const { login, register, deleteOne, getAll, check } = require('./controllers');
 
+
+router.get('/', getAll);
 router.get('/check', authMiddleware, check);
 router.post('/login', login);
 router.post('/register', register);

@@ -3,6 +3,7 @@ const uuid = require('uuid');
 const path = require('path');
 const errorMiddleWare = require('../../middlewares/errorMiddleWare');
 const formidable = require('formidable');
+const fs = require('fs');
 
 exports.create = async (req, res, next) => {
   try {
@@ -81,3 +82,27 @@ exports.getOne = async (req, res, next) => {
     next(errorMiddleware(e.message, res));
   }
 };
+
+// Удаление ненужных фотографий
+// const asyncFunc = async () => {
+//   const filenames = fs.readdirSync(path.resolve('./static'));
+//   const images = await Device.findAll({ attributes: ['img'], raw: true });
+
+//   const arr = [];
+//   const arr2 = [];
+//   images.forEach((el) => {
+//     arr.push(el.img);
+//   });
+
+//   filenames.forEach((el) => {
+//     if (!arr.includes(el)) {
+//       arr2.push(el);
+//     }
+//   });
+//   arr2.forEach((el) => {
+//     fs.unlink(path.resolve(`./static/${el}`), (err) => {
+//       if (err) console.log(err);
+//     });
+//   });
+// };
+// asyncFunc();

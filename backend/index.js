@@ -8,6 +8,7 @@ const errorMiddleware = require('./middlewares/errorMiddleWare');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
+const fs = require('fs')
 
 const PORT = process.env.PORT || 5000;
 const app = express();

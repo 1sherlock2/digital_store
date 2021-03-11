@@ -1,15 +1,14 @@
-const errorMiddleWare = require('../../middlewares/errorMiddleWare');
-const { User, Basket } = require('../../models/models');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const statusCode = require('../../utils/responseValue');
+const errorMiddleWare = require('../../middlewares/errorMiddleWare'),
+  { User, Basket } = require('../../models/models'),
+  jwt = require('jsonwebtoken'),
+  bcrypt = require('bcrypt'),
+  statusCode = require('../../utils/responseValue'),
+  secretKey = process.env.PRIVAT_KEY;
 
-const secretKey = process.env.PRIVAT_KEY;
-
-const generateJwt = (email, secretKey) => {
-  return jwt.sign({ email }, secretKey, {
+const generateJwt = ({ email, role }, secretKey) => {
+  return jwt.sign({ email, role }, secretKey, {
     algorithm: 'HS256',
-    expiresIn: '1h',
+    expiresIn: '10h',
   });
 };
 
@@ -25,7 +24,7 @@ exports.register = async (req, res, next) => {
     if (findUser) {
       return res.status(400).json({ message: 'This user was created' });
     }
-    const bcryptpass = await bcrypt.hash(password, 10);
+    const bcryptpass = bcrypt.hashSync(password, 10);
     const user = await User.create({ email, bcryptpass, role });
     const basket = await Basket.create({ where: { userId: user.id } });
     return statusCode(res, 200, { message: 'User has been created' });
@@ -49,7 +48,10 @@ exports.login = async (req, res) => {
         message: 'email or password is not correct',
       });
     }
-    const token = await generateJwt(email, secretKey);
+    const token = await generateJwt(
+      { id: user.id, email, role: user.role },
+      secretKey
+    );
     return statusCode(res, 200, { token, user: user.id });
   } catch (e) {
     console.log(e);
