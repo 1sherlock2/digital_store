@@ -1,0 +1,24 @@
+@import '../../../style/constants.scss';
+
+.menu_select {
+  position: absolute;
+  left: -65px;
+  top: 270px;
+  // border: 1px solid #333;
+  width: 200px;
+  height: 70px;
+  margin: 0;
+  padding: 0;
+  transform: rotate(270deg);
+  border-radius: 0 0 50% 50%/ 0 0 100% 100%;
+  background-color: $pink-300;
+  color: $pink-100;
+  cursor: pointer;
+
+  &_title {
+    padding: 10px;
+    font-size: 30px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}

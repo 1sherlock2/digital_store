@@ -1,0 +1,47 @@
+@import '../../../style/constants.scss';
+
+.basket_icon {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  position: relative;
+  width: 180px;
+  height: 55px;
+  background-color: $pink-100;
+  color: $pink-500;
+  cursor: pointer;
+
+  &__home {
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+
+    &:hover {
+      background-color: $pink-200;
+    }
+
+    svg {
+      margin-left: 5px;
+      height: 33px;
+      width: 39px;
+    }
+  }
+  &__subBasket {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+
+    &:hover {
+      background-color: $pink-200;
+    }
+
+    svg {
+      height: 33px;
+      width: 39px;
+    }
+    &_count {
+      padding-left: 10px;
+    }
+  }
+}

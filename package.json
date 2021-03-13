@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/1sherlock2/digital_store/issues"
   },
-  "homepage": "https://github.com/1sherlock2/digital_store#readme"
+  "homepage": "https://github.com/1sherlock2/digital_store#readme",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  }
 }

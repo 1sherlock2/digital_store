@@ -1,0 +1,37 @@
+@import '../../../style/constants.scss';
+
+@keyframes Appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.main_title {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-left: 50px;
+
+  h1 {
+    color: $pink-400;
+    font-size: 70px;
+    transform: translateY(-50%);
+    animation-name: Appearance;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+  }
+  span {
+    display: flex;
+    align-self: center;
+    width: 50%;
+    font-size: 45px;
+    color: $pink-300;
+    transform: translateY(-50%);
+    animation-name: Appearance;
+    animation-duration: 3s;
+    animation-timing-function: cubic-bezier(0.1, -0.6, 0.2, 0);
+  }
+}
