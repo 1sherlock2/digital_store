@@ -1,13 +1,11 @@
 @import '../../../style/constants.scss';
 
 .menu_select {
-  position: absolute;
-  left: -65px;
-  top: 270px;
-  // border: 1px solid #333;
-  width: 200px;
+  position: relative;
+  width: 130px;
   height: 70px;
-  margin: 0;
+  margin-left: -40px;
+  margin-top: -50px;
   padding: 0;
   transform: rotate(270deg);
   border-radius: 0 0 50% 50%/ 0 0 100% 100%;
@@ -21,4 +19,22 @@
     margin: 0 auto;
     text-align: center;
   }
+}
+
+.menu_select_subtitle {
+  margin-top: -155px;
+  margin-left: -100px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background-color: $pink-400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0) rotate(-180deg);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.change_subtitle {
+  transform: scale(1) rotate(0);
 }
