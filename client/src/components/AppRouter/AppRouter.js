@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { authRoute, publicRoute } from '../routes/index';
-import paths from '../utils/constants';
+import { authRoute, publicRoute } from '../../routes/index';
+import paths from '../../utils/constants';
 
 const AppRouter = () => {
   const isAuth = true;
