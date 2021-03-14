@@ -1,7 +1,7 @@
 import './App.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import AppRouter from './components/AppRouter';
+import AppRouter from './components/AppRouter/AppRouter';
 import store from './store/store';
 
 function App() {
