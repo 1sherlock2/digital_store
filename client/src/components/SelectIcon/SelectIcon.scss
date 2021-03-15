@@ -1,0 +1,37 @@
+@import '../../style/constants.scss';
+
+.select_icon {
+  position: relative;
+
+  &_popup {
+    position: absolute;
+    opacity: 1;
+    left: 0;
+    top: -50px;
+    width: 90px;
+    height: 25px;
+    padding: 5px;
+    color: aqua;
+    background-color: #333;
+    text-decoration: none;
+    animation: showBlock 0.2s linear forwards;
+    border-radius: 5%;
+    text-align: center;
+  }
+}
+
+.longDesc {
+  width: 120px;
+}
+.basketLogin {
+  top: 50px;
+}
+
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}

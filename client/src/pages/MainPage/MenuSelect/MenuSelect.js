@@ -23,13 +23,28 @@ const MenuSelect = () => {
           })}
         >
           <NavLink to="/devices" className="menu_select_subtitle_link">
-            <SelectIcon width="34" height="20" icon="devices" />
+            <SelectIcon
+              width="34"
+              height="20"
+              icon="devices"
+              description="devices"
+            />
           </NavLink>
           <NavLink to="/types" className="menu_select_subtitle_link">
-            <SelectIcon width="34" height="20" icon="devices" />
+            <SelectIcon
+              width="34"
+              height="20"
+              icon="types"
+              description="types"
+            />
           </NavLink>
           <NavLink to="/shop" className="menu_select_subtitle_link">
-            <SelectIcon width="34" height="20" icon="devices" />
+            <SelectIcon
+              width="34"
+              height="20"
+              icon="brands"
+              description="brands"
+            />
           </NavLink>
         </div>
       </div>
