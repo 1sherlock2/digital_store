@@ -6,32 +6,41 @@ import Basket from '../pages/Basket/Basket';
 import paths from '../utils/constants';
 import MainPage from '../pages/MainPage/MainPage';
 
+const {
+  authPath,
+  registerPath,
+  mainPath,
+  devicesPath,
+  shopPath,
+  basketPath,
+} = paths;
+
 export const authRoute = [
   {
-    path: paths.authPath,
+    path: authPath,
     component: Auth,
   },
   {
-    path: paths.registerPath,
+    path: registerPath,
     component: Register,
   },
 ];
 
 export const publicRoute = [
   {
-    path: paths.mainPath,
+    path: mainPath,
     component: MainPage,
   },
   {
-    path: paths.devicesPath,
+    path: devicesPath,
     component: Devices,
   },
   {
-    path: paths.shopPath,
+    path: shopPath,
     component: Shop,
   },
   {
-    path: paths.basketPath,
+    path: basketPath,
     component: Basket,
   },
 ];

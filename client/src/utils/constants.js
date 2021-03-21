@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {
+const paths = {
   mainPath: '/',
   authPath: '/auth',
   registerPath: '/register',
@@ -7,3 +6,5 @@ export default {
   shopPath: '/shop',
   basketPath: '/basket',
 };
+
+export default paths;

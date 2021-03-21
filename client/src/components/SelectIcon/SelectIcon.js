@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { BasketIcon } from '../../utils/icons/BasketIcon';
 import BrandIcon from '../../utils/icons/BrandIcon';
 import { DevicesIcon } from '../../utils/icons/DevicesIcon';

@@ -1,5 +1,6 @@
 $font-family: 'Roboto', 'Helvetica', sans-serif;
 
+// Colors
 $main: #fefcfc;
 
 $gray-100: #fff;
@@ -14,3 +15,90 @@ $pink-300: #f7b7ac;
 $pink-400: #f58b8b;
 $pink-500: #f78181;
 $pink-600: #e8887c;
+
+// Sizes
+$size-76: 4.75rem;
+$size-68: 4.25rem;
+$size-60: 3.75rem;
+$size-56: 3.5rem;
+$size-48: 3rem;
+$size-46: 2.875rem;
+$size-42: 2.625rem;
+$size-40: 2.5rem;
+$size-36: 2.25rem;
+$size-32: 2rem;
+$size-28: 1.75rem;
+$size-26: 1.625rem;
+$size-24: 1.5rem;
+$size-22: 1.375rem;
+$size-20: 1.25rem;
+$size-18: 1.125rem;
+$size-16: 1rem;
+$size-14: 0.875rem;
+$size-12: 0.75rem;
+$size-10: 0.625rem;
+$size-8: 0.5rem;
+$size-6: 0.375rem;
+$size-4: 0.25rem;
+
+// Spacing:
+$spacing-60: $size-60;
+$spacing-56: $size-56;
+$spacing-40: $size-40;
+$spacing-28: $size-28;
+$spacing-24: $size-24;
+$spacing-20: $size-20;
+$spacing-16: $size-16;
+$spacing-14: $size-14;
+$spacing-12: $size-12;
+$spacing-8: $size-8;
+$spacing-6: $size-6;
+$spacing-4: $size-4;
+
+// Font-size:
+
+$font-size-76: $size-76;
+$font-size-68: $size-68;
+$font-size-56: $size-56;
+$font-size-48: $size-48;
+$font-size-46: $size-46;
+$font-size-42: $size-42;
+$font-size-36: $size-36;
+$font-size-32: $size-32;
+$font-size-28: $size-28;
+$font-size-24: $size-24;
+$font-size-22: $size-22;
+$font-size-20: $size-20;
+$font-size-18: $size-18;
+$font-size-16: $size-16;
+$font-size-14: $size-14;
+$font-size-12: $size-12;
+$font-size-10: $size-10;
+$font-size-8: $size-8;
+
+// line-height
+$line-height-76: $size-76;
+$line-height-56: $size-56;
+$line-height-48: $size-48;
+$line-height-46: $size-46;
+$line-height-40: $size-40;
+$line-height-32: $size-32;
+$line-height-28: $size-28;
+$line-height-24: $size-24;
+$line-height-22: $size-22;
+$line-height-20: $size-20;
+$line-height-16: $size-16;
+
+// font-height
+$font-weight-base: 400;
+$font-weight-bold: 500;
+
+@mixin fontSizeWeightLine(
+  $size: $font-size-14,
+  $weight: $font-weight-base,
+  $lineHeight: $line-height-24
+) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+}

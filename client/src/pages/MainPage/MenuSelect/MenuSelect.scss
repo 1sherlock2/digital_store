@@ -69,6 +69,33 @@
       }
     }
   }
+  &_description {
+    position: absolute;
+    top: 500px;
+    right: 0;
+    transform: rotate(90deg);
+    width: 500px;
+    height: 100px;
+    padding: 20px;
+    background-color: $pink-200;
+    border-radius: 5%;
+    box-shadow: 2px 2px 4px $gray-300;
+    text-align: center;
+
+    span {
+      color: $pink-500;
+      @include fontSizeWeightLine($font-size-28, false, $line-height-32);
+    }
+    svg {
+      position: absolute;
+      top: -50px;
+      left: -130px;
+      transform: rotate(20deg);
+    }
+    &_icon {
+      fill: $pink-400;
+    }
+  }
 }
 
 .change_subtitle {
